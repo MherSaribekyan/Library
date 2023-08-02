@@ -1,0 +1,11 @@
+ext.libs = [
+
+        springStarter          : 'org.springframework.boot:spring-boot-starter-web',
+        springStarterValidation: 'org.springframework.boot:spring-boot-starter-validation',
+        mongoDb                : 'org.springframework.boot:spring-boot-starter-data-mongodb',
+        cache                  : 'org.springframework.boot:spring-boot-starter-cache',
+        annotationProcessor    : 'org.springframework.boot:spring-boot-configuration-processor',
+
+        lombok                 : "org.projectlombok:lombok",
+
+]

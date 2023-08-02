@@ -1,0 +1,29 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'java-library'
+}
+
+
+
+group 'com.library.app.services'
+version '0.0.1'
+
+dependencies {
+
+    implementation project(':library-repositories')
+
+    implementation libs.springStarter
+    implementation libs.springStarterValidation
+    annotationProcessor libs.annotationProcessor
+
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+
+
+}
+
+bootJar {
+    enabled = false
+}
