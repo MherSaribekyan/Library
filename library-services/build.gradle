@@ -13,9 +13,14 @@ dependencies {
 
     implementation project(':library-repositories')
 
-    implementation libs.springStarter
+    implementation libs.springStarterWeb
+    implementation libs.springStarterSecurity
     implementation libs.springStarterValidation
     annotationProcessor libs.annotationProcessor
+    implementation libs.springDataJpa
+    implementation libs.openCSV
+
+    implementation 'org.apache.httpcomponents.client5:httpclient5'
 
     compileOnly libs.lombok
     annotationProcessor libs.lombok

@@ -11,10 +11,17 @@ version '0.0.1'
 dependencies {
     implementation project(':library-services')
 
-    implementation libs.springStarter
+    implementation libs.springStarterWeb
+    implementation libs.springDataJpa
     implementation libs.springStarterValidation
+    implementation libs.guava
+    implementation libs.openApi
+
 
     annotationProcessor libs.annotationProcessor
+
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
 }
 
 bootJar {

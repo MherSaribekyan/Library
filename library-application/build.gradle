@@ -19,15 +19,27 @@ dependencies {
     implementation project(':library-services')
 
 
-    implementation libs.springStarter
+    implementation libs.springStarterWeb
+    implementation libs.springStarterSecurity
+    implementation libs.oauth2client
+    implementation libs.oauth2client1
     annotationProcessor libs.annotationProcessor
+    implementation libs.springDataJpa
+
+    implementation libs.openApi
+    implementation libs.guava
+
+    runtimeOnly libs.h2Database
+    runtimeOnly libs.mySqlConnector
+    implementation libs.zaxxer
 
     compileOnly libs.lombok
     annotationProcessor libs.lombok
 
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.boot:spring-boot-test-autoconfigure'
+    testImplementation libs.springTest
+    testImplementation libs.springSecurityTest
+//    testImplementation libs.springTestAutoconfigure
 }
 
 test {

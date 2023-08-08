@@ -11,6 +11,11 @@ version '0.0.1'
 
 dependencies {
 
+    implementation libs.springDataJpa
+    implementation libs.flywayMysql
+    implementation libs.jcache
+    implementation libs.ehcache
+
     annotationProcessor libs.annotationProcessor
 
     compileOnly libs.lombok

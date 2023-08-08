@@ -16,12 +16,14 @@
     </root>
 
     <!-- LOG at TRACE level -->
-    <logger name="com.library" level="info" additivity="false">
+    <logger name="com.library" level="debug" additivity="false">
         <appender-ref ref="Console" />
     </logger>
 
     <logger name="org.hibernate.SQL" level="debug" additivity="false">
         <appender-ref ref="Console" />
     </logger>
+
+    <logger name="org.flywaydb" level="DEBUG"/>
 
 </configuration>
