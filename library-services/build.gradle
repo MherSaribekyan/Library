@@ -1,0 +1,34 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'java-library'
+}
+
+
+
+group 'com.library.app.services'
+version '0.0.1'
+
+dependencies {
+
+    implementation project(':library-repositories')
+
+    implementation libs.springStarterWeb
+    implementation libs.springStarterSecurity
+    implementation libs.springStarterValidation
+    annotationProcessor libs.annotationProcessor
+    implementation libs.springDataJpa
+    implementation libs.openCSV
+
+    implementation 'org.apache.httpcomponents.client5:httpclient5'
+
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+
+
+}
+
+bootJar {
+    enabled = false
+}

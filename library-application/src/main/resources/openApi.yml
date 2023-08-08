@@ -1,0 +1,447 @@
+openapi: 3.0.3
+info:
+  title: Library API
+  version: v1
+paths:
+  /api/v1/library/registration:
+    post:
+      tags:
+        - Registration
+      operationId: register
+      description: Requires no authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationRequest'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+
+  /api/v1/library/actions/admin/create:
+    post:
+      tags:
+        - Admin
+      operationId: create admin
+      description: Requires SUPER-ADMIN authentication role
+      parameters:
+        - name: JSESSIONID
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationRequest'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+
+  /api/v1/library/actions/admin/grant:
+    post:
+      tags:
+        - Admin
+      operationId: grant admin
+      description: Requires SUPER-ADMIN authentication role
+      parameters:
+        - name: JSESSIONID
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantAdminRequest'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+
+  /api/v1/library/books?pageNo=,pageSize=:
+    get:
+      tags:
+        - Books
+      operationId: get books
+      description: Requires USER authentication role
+      parameters:
+        - name: JSESSIONID
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: pageNo
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+
+  /api/v1/library/books/title/{title}:
+    get:
+      tags:
+        - Books
+      operationId: get book by title
+      description: Requires USER authentication role
+      parameters:
+        - name: JSESSIONID
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: title
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                  $ref: '#/components/schemas/BookResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+
+  /api/v1/library/books/author/{author}?pageNo=,pageSize=:
+    get:
+      tags:
+        - Books
+      operationId: get book by author
+      description: Requires USER authentication role
+      parameters:
+        - name: JSESSIONID
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: author
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageNo
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+
+  /api/v1/library/books/genre/{genre}?pageNo=,pageSize=:
+    get:
+      tags:
+        - Books
+      operationId: get book by genre
+      description: Requires USER authentication role
+      parameters:
+        - name: JSESSIONID
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: genre
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageNo
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ExceptionResponse'
+
+components:
+  schemas:
+    ExceptionResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+            - "100600"
+            - "100601"
+            - "100602"
+            - "100603"
+            - "100604"
+            - "100605"
+            - "100606"
+            - "100607"
+            - "100608"
+        fields:
+          type: array
+          items:
+            type: string
+    RegistrationRequest:
+        required:
+          - name
+          - phone
+          - email
+          - password
+        type: object
+        properties:
+          name:
+            type: string
+            maximum: 64
+          phone:
+            type: string
+            maximum: 64
+          email:
+            type: string
+            maximum: 64
+          password:
+            type: string
+            maximum: 64
+    GrantAdminRequest:
+      required:
+        - userId
+      type: object
+      properties:
+        userId:
+          type: string
+          maximum: 64
+    BookResponse:
+      required:
+        - title
+        - author
+        - genre
+        - description
+        - isbn
+        - image
+        - published
+        - publisher
+      type: object
+      properties:
+        title:
+          type: string
+          maximum: 64
+        author:
+          type: string
+          maximum: 64
+        genre:
+          type: string
+          maximum: 64
+        description:
+          type: string
+          maximum: 512
+        isbn:
+          type: string
+          maximum: 64
+        image:
+          type: string
+          maximum: 64
+        published:
+          type: string
+          maximum: 64
+        publisher:
+          type: string
+          maximum: 64
+

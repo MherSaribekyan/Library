@@ -1,0 +1,27 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'java-library'
+}
+
+
+group 'com.library.app.repositories'
+version '0.0.1'
+
+
+dependencies {
+
+    implementation libs.springDataJpa
+    implementation libs.flywayMysql
+    implementation libs.jcache
+    implementation libs.ehcache
+
+    annotationProcessor libs.annotationProcessor
+
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+}
+
+bootJar {
+    enabled = false
+}

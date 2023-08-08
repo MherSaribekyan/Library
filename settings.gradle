@@ -1,1 +1,5 @@
-rootProject.name = 'Library'
+rootProject.name = 'library-app'
+include 'library-api'
+include 'library-application'
+include 'library-repositories'
+include 'library-services'
