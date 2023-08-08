@@ -23,11 +23,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "t_user_preferences",
-        uniqueConstraints = {@UniqueConstraint(name = "uk_user_preference_id_deleted", columnNames = {"id", "deleted"})})
+      uniqueConstraints = {@UniqueConstraint(name = "uk_user_preference_id_deleted", columnNames = {"id", "deleted"})})
 public class UserPreference extends BaseEntity {
 
-    @Column(name = "genre")
-    private String genre;
+    @Column(name = "preference")
+    private String preference;
 
     @Column(name = "old")
     private LocalDate old;
@@ -53,7 +53,7 @@ public class UserPreference extends BaseEntity {
 
         return new EqualsBuilder()
                 .appendSuper(true)
-                .append(this.genre, userPreference.genre)
+                .append(this.preference, userPreference.preference)
                 .append(this.old, userPreference.old)
                 .isEquals();
     }
@@ -62,7 +62,7 @@ public class UserPreference extends BaseEntity {
     public int hashCode() {
         return new HashCodeBuilder(INIT_ODD, MULTIPLY_ODD)
                 .appendSuper(super.hashCode())
-                .append(this.genre)
+                .append(this.preference)
                 .append(this.old)
                 .toHashCode();
     }
@@ -71,7 +71,7 @@ public class UserPreference extends BaseEntity {
     public String toString() {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append("genre", this.genre)
+                .append("preference", this.preference)
                 .append("old", this.old)
                 .toString();
     }

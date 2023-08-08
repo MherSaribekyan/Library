@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class UserRepositoryTest {
@@ -35,7 +36,7 @@ public class UserRepositoryTest {
 
         //verification
         Optional<User> byId = this.repository.findById(save.getId());
-        assertNotNull(byId.get());
+        assertTrue(byId.isPresent());
     }
 
     @Test
@@ -55,7 +56,6 @@ public class UserRepositoryTest {
     void findUserByEmailNegativeTest() {
         //preparation
         User user = getUser();
-        User save = this.repository.save(user);
 
         //source
         User byEmailAndDeletedIsNull = this.repository.findByEmailAndDeletedIsNull("anyFakeEmail");

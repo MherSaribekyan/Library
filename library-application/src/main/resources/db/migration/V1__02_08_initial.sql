@@ -52,7 +52,7 @@ create table t_payment_card
 create table t_user_preferences
 (
     id         varchar(36) primary key,
-    genre      varchar(64) not null,
+    preference varchar(64) not null,
     old        timestamp not null,
 
     user_id    varchar(36) references t_user (id) on update cascade on delete cascade,

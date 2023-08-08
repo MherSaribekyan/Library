@@ -3,7 +3,6 @@ package com.library.app.security.endpoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.library.app.services.registration.RegistrationService;
 import com.library.app.services.registration.model.RegistrationRequest;
-import com.library.app.services.user.UserLoader;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

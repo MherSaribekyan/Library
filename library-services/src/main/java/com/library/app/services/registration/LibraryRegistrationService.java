@@ -6,8 +6,6 @@ import com.library.app.services.user.UserMapper;
 import com.library.app.services.user.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class LibraryRegistrationService implements RegistrationService {
 

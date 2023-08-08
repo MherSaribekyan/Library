@@ -23,7 +23,7 @@ public class LibraryPreferenceService implements PreferenceService {
     public void addUserPreference(final String principalName, final String preference) {
         final User user = this.userRepository.findByEmailAndDeletedIsNull(principalName);
         final UserPreference userPreference = new UserPreference();
-        userPreference.setGenre(preference);
+        userPreference.setPreference(preference);
         userPreference.setOld(LocalDate.now());
         user.addPreference(userPreference);
         this.userRepository.save(user);
@@ -35,7 +35,7 @@ public class LibraryPreferenceService implements PreferenceService {
         final User user = this.userRepository.findByEmailAndDeletedIsNull(principalName);
         preferences.forEach(preference -> {
             final UserPreference userPreference = new UserPreference();
-            userPreference.setGenre(preference);
+            userPreference.setPreference(preference);
             userPreference.setOld(LocalDate.now());
             user.addPreference(userPreference);
         });
@@ -46,7 +46,7 @@ public class LibraryPreferenceService implements PreferenceService {
     public Set<String> getUserPreferences(final String principalName) {
         final User user = this.userRepository.findByEmailAndDeletedIsNull(principalName);
         return user.getUserPreferences()
-                .stream().map(UserPreference::getGenre)
+                .stream().map(UserPreference::getPreference)
                 .collect(Collectors.toSet());
     }
 

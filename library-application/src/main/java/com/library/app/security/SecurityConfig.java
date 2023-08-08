@@ -18,13 +18,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
-                    authorizationManagerRequestMatcherRegistry
-                            .requestMatchers("/api/v1/library/registration").permitAll()
-                            .requestMatchers("/api/v1/library/actions/admin/**").hasRole(Role.SUPER_ADMIN.name())
-                            .requestMatchers("/api/v1/library/admin/**").hasRole(Role.ADMIN.name())
-                            .anyRequest().authenticated();
-                })
+                .authorizeHttpRequests(matcherRegistry -> matcherRegistry
+                        .requestMatchers("/api/v1/library/registration").permitAll()
+                        .requestMatchers("/api/v1/library/actions/admin/**").hasRole(Role.SUPER_ADMIN.name())
+                        .requestMatchers("/api/v1/library/admin/**").hasRole(Role.ADMIN.name())
+                        .anyRequest().authenticated())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .oauth2Login(AbstractAuthenticationFilterConfigurer::permitAll)
                 .rememberMe(Customizer.withDefaults());

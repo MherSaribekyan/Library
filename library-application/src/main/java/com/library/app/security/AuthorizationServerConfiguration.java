@@ -53,6 +53,12 @@ public class AuthorizationServerConfiguration {
     //todo for auth2 authentication
     @Bean
     public ClientRegistrationRepository clientRepository() {
+        ClientRegistration googleRegistration =
+                CommonOAuth2Provider.GOOGLE.getBuilder("google")
+                        .clientId("id")
+                        .clientSecret("secret")
+                        .build();
+
 
         ClientRegistration githubRegistration =
                 CommonOAuth2Provider.GITHUB.getBuilder("github")
@@ -66,7 +72,7 @@ public class AuthorizationServerConfiguration {
                         .clientSecret("secret")
                         .build();
 
-        return new InMemoryClientRegistrationRepository(githubRegistration,
+        return new InMemoryClientRegistrationRepository(googleRegistration, githubRegistration,
                 facebookRegistration);
     }
 

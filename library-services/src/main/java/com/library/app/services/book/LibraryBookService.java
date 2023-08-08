@@ -34,7 +34,8 @@ public class LibraryBookService implements BookService {
     @Override
     public BookResponse getBook(final String title, final String principalName) {
         final Book bookByTitle = this.repository.getBookByTitleAndDeletedIsNull(title);
-        this.preferenceService.addUserPreferences(principalName, List.of(bookByTitle.getGenre(), bookByTitle.getAuthor()));
+        this.preferenceService
+                .addUserPreferences(principalName, List.of(bookByTitle.getGenre(), bookByTitle.getAuthor()));
         return this.responseMapper.toResponse(bookByTitle);
     }
 
@@ -42,19 +43,22 @@ public class LibraryBookService implements BookService {
     public List<BookResponse> getBooks(final Integer pageNo, final Integer pageSize, final String principalName) {
         final Pageable pageable = PageRequest.of(pageNo, pageSize);
         final List<Book> books = this.repository.findAllByDeletedIsNull(pageable);
-        final Set<String> userPreferences = preferenceService.getUserPreferences(principalName);
-        final List<Book> sorted = userPreferences.isEmpty() ? books : this.sort(books, userPreferences, null);
+        final Set<String> userPreferences = this.preferenceService.getUserPreferences(principalName);
+        final List<Book> sorted = userPreferences.isEmpty()
+                ? books : this.sort(books, userPreferences, SortingArgument.DEFAULT);
         return sorted.stream()
                 .map(this.responseMapper::toResponse)
                 .toList();
     }
 
     @Override
-    public List<BookResponse> getBooksByAuthor(final String author, final String principalName, final Integer pageNo, final Integer pageSize) {
+    public List<BookResponse> getBooksByAuthor(final String author, final String principalName,
+                                               final Integer pageNo, final Integer pageSize) {
         final Pageable pageable = PageRequest.of(pageNo, pageSize);
         List<Book> allByAuthor = this.repository.findAllByAuthorAndDeletedIsNull(author, pageable);
         final Set<String> userPreferences = preferenceService.getUserPreferences(principalName);
-        final List<Book> sorted = userPreferences.isEmpty() ? allByAuthor : this.sort(allByAuthor, userPreferences, SortingArgument.GENRE);
+        final List<Book> sorted = userPreferences.isEmpty()
+                ? allByAuthor : this.sort(allByAuthor, userPreferences, SortingArgument.GENRE);
         this.preferenceService.addUserPreference(principalName, author);
         return sorted.stream()
                 .map(this.responseMapper::toResponse)
@@ -62,18 +66,21 @@ public class LibraryBookService implements BookService {
     }
 
     @Override
-    public List<BookResponse> getBooksByGenre(final String genre, final String principalName, final Integer pageNo, final Integer pageSize) {
+    public List<BookResponse> getBooksByGenre(final String genre, final String principalName,
+                                              final Integer pageNo, final Integer pageSize) {
         final Pageable pageable = PageRequest.of(pageNo, pageSize);
         final List<Book> allByGenre = this.repository.findAllByGenreAndDeletedIsNull(genre, pageable);
         final Set<String> userPreferences = preferenceService.getUserPreferences(principalName);
-        final List<Book> sorted = userPreferences.isEmpty() ? allByGenre : this.sort(allByGenre, userPreferences, SortingArgument.AUTHOR);
+        final List<Book> sorted = userPreferences.isEmpty()
+                ? allByGenre : this.sort(allByGenre, userPreferences, SortingArgument.AUTHOR);
         this.preferenceService.addUserPreference(principalName, genre);
         return sorted.stream()
                 .map(this.responseMapper::toResponse)
                 .toList();
     }
 
-    private List<Book> sort(final List<Book> books, final Set<String> userPreferences, final SortingArgument sortArgument) {
+    private List<Book> sort(final List<Book> books, final Set<String> userPreferences,
+                            final SortingArgument sortArgument) {
         final List<Book> sorted = new ArrayList<>(books.size());
         final Iterator<Book> iterator = books.iterator();
         final List<String> argumentList = new ArrayList<>();

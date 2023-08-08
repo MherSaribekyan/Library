@@ -13,6 +13,7 @@ import java.util.function.Supplier;
 @Configuration
 public class RestConfig {
 
+    @SuppressWarnings("MagicNumber")
     @Bean
     public RestTemplate restTemplate(final RestTemplateBuilder templateBuilder) {
         templateBuilder.requestFactory((Supplier<ClientHttpRequestFactory>) HttpComponentsClientHttpRequestFactory::new)

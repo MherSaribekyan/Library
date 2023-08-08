@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//Class is written just for temporary use, it will be changed with flyway migration
+
 @Service
 @Slf4j
 public class UserLoader {
@@ -34,10 +35,11 @@ public class UserLoader {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final static String FILE_PATH = "/files/data-tVJ5E-PoXliPdkzyzbeE0.csv";
+    private static final String FILE_PATH = "/files/data-tVJ5E-PoXliPdkzyzbeE0.csv";
 
-    private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MMM d, yyyy");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
+    @SuppressWarnings("MagicNumber")
     @PostConstruct
     @Transactional
     public void loadUsersFromCSV() {
@@ -50,7 +52,7 @@ public class UserLoader {
         userService.save(superAdmin);
 
         List<User> users = new ArrayList<>();
-        try(InputStream inputStream = getClass().getResourceAsStream(FILE_PATH)) {
+        try (InputStream inputStream = getClass().getResourceAsStream(FILE_PATH)) {
             try (Reader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)))) {
                 try (CSVReader csvReader = new CSVReader(reader)) {
                     List<String[]> strings = csvReader.readAll();

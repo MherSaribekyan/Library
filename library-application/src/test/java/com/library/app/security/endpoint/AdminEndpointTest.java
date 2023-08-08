@@ -1,9 +1,7 @@
 package com.library.app.security.endpoint;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.library.app.services.registration.model.RegistrationRequest;
-import com.library.app.services.user.UserLoader;
 import com.library.app.services.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

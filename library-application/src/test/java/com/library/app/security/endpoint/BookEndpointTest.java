@@ -2,7 +2,6 @@ package com.library.app.security.endpoint;
 
 import com.library.app.services.book.BookLoader;
 import com.library.app.services.book.BookService;
-import com.library.app.services.user.UserLoader;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

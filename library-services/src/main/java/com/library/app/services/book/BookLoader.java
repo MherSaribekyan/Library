@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Objects;
 
+
+//Class is written just for temporary use, it will be changed with flyway migration
 @Service
 @Slf4j
 public class BookLoader {

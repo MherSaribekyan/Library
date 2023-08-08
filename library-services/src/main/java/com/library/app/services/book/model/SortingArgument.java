@@ -7,7 +7,8 @@ import lombok.Getter;
 public enum SortingArgument {
 
     GENRE("genre"),
-    AUTHOR("author");
+    AUTHOR("author"),
+    DEFAULT("default");
 
     private final String name;
 

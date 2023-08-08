@@ -18,19 +18,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmailAndDeletedIsNull(email);
+    public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
+        final User user = userRepository.findByEmailAndDeletedIsNull(email);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthorities(user.getRole().name()));
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(), user.getPassword(), getAuthorities(user.getRole().name()));
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
-        return Collections.singletonList(new SimpleGrantedAuthority(role_user));
+    private Collection<? extends GrantedAuthority> getAuthorities(final String userRole) {
+        return Collections.singletonList(new SimpleGrantedAuthority(userRole));
     }
 
-    public UserDetailsServiceImpl(UserRepository userRepository) {
+    public UserDetailsServiceImpl(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 }
