@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 @RestController
 public class ApiEndpoint {
-    @Value("classpath:openApi.yml")
+    @Value("classpath:openapi.yml")
     private Resource openapiResource;
     
     @SneakyThrows

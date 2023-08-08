@@ -50,7 +50,7 @@ paths:
       description: Requires SUPER-ADMIN authentication role
       parameters:
         - name: JSESSIONID
-          in: header
+          in: cookie
           required: true
           schema:
             type: string
@@ -95,7 +95,7 @@ paths:
       description: Requires SUPER-ADMIN authentication role
       parameters:
         - name: JSESSIONID
-          in: header
+          in: cookie
           required: true
           schema:
             type: string
@@ -140,7 +140,7 @@ paths:
       description: Requires USER authentication role
       parameters:
         - name: JSESSIONID
-          in: header
+          in: cookie
           required: true
           schema:
             type: string
@@ -196,7 +196,7 @@ paths:
       description: Requires USER authentication role
       parameters:
         - name: JSESSIONID
-          in: header
+          in: cookie
           required: true
           schema:
             type: string
@@ -245,7 +245,7 @@ paths:
       description: Requires USER authentication role
       parameters:
         - name: JSESSIONID
-          in: header
+          in: cookie
           required: true
           schema:
             type: string
@@ -306,7 +306,7 @@ paths:
       description: Requires USER authentication role
       parameters:
         - name: JSESSIONID
-          in: header
+          in: cookie
           required: true
           schema:
             type: string

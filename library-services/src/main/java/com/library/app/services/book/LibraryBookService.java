@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -40,6 +41,7 @@ public class LibraryBookService implements BookService {
     }
 
     @Override
+    @Transactional
     public List<BookResponse> getBooks(final Integer pageNo, final Integer pageSize, final String principalName) {
         final Pageable pageable = PageRequest.of(pageNo, pageSize);
         final List<Book> books = this.repository.findAllByDeletedIsNull(pageable);
@@ -52,6 +54,7 @@ public class LibraryBookService implements BookService {
     }
 
     @Override
+    @Transactional
     public List<BookResponse> getBooksByAuthor(final String author, final String principalName,
                                                final Integer pageNo, final Integer pageSize) {
         final Pageable pageable = PageRequest.of(pageNo, pageSize);
@@ -66,6 +69,7 @@ public class LibraryBookService implements BookService {
     }
 
     @Override
+    @Transactional
     public List<BookResponse> getBooksByGenre(final String genre, final String principalName,
                                               final Integer pageNo, final Integer pageSize) {
         final Pageable pageable = PageRequest.of(pageNo, pageSize);
