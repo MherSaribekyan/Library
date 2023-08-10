@@ -3,8 +3,8 @@ ext.libs = [
         springStarterWeb       : 'org.springframework.boot:spring-boot-starter-web',
 
         springStarterSecurity  : 'org.springframework.boot:spring-boot-starter-security',
-        oauth2client           : 'org.springframework.security:spring-security-oauth2-authorization-server:1.1.1',
-        oauth2client1           : 'org.springframework.security:spring-security-oauth2-client',
+        oauth2client           : 'org.springframework.security:spring-security-oauth2-authorization-server',
+        oauth2clientAuth       : 'org.springframework.security:spring-security-oauth2-client',
 
         springStarterValidation: 'org.springframework.boot:spring-boot-starter-validation',
         annotationProcessor    : 'org.springframework.boot:spring-boot-configuration-processor',

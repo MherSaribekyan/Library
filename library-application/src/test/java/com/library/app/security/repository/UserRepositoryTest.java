@@ -54,14 +54,8 @@ public class UserRepositoryTest {
 
     @Test
     void findUserByEmailNegativeTest() {
-        //preparation
-        User user = getUser();
-
-        //source
-        User byEmailAndDeletedIsNull = this.repository.findByEmailAndDeletedIsNull("anyFakeEmail");
-
         //verification
-        assertNull(byEmailAndDeletedIsNull);
+        assertNull(this.repository.findByEmailAndDeletedIsNull("anyFakeEmail"));
     }
 
     private User getUser() {

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -40,7 +39,7 @@ public class RegistrationServiceTest {
         this.service.register(request);
 
         //verification
-        verify(this.userService, times(1)).save(eq(entity));
+        verify(this.userService, times(1)).save(entity);
     }
 
     private User getUser() {

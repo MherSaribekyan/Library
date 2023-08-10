@@ -51,11 +51,11 @@ public class UserLoader {
         superAdmin.setPhone("+37441353511");
         userService.save(superAdmin);
 
-        List<User> users = new ArrayList<>();
+        final List<User> users = new ArrayList<>();
         try (InputStream inputStream = getClass().getResourceAsStream(FILE_PATH)) {
             try (Reader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)))) {
                 try (CSVReader csvReader = new CSVReader(reader)) {
-                    List<String[]> strings = csvReader.readAll();
+                    final List<String[]> strings = csvReader.readAll();
                     for (int i = 1; i < strings.size() - 1; i++) {
                         String[] userLine = strings.get(i);
                         final User user = new User();

@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -44,7 +43,7 @@ public class UserServiceTest {
         this.service.save(user);
 
         //verification
-        verify(this.repository, times(1)).save(eq(user));
+        verify(this.repository, times(1)).save(user);
     }
 
     @Test
@@ -57,7 +56,7 @@ public class UserServiceTest {
         this.service.saveAll(userList);
 
         //verification
-        verify(this.repository, times(1)).saveAll(eq(userList));
+        verify(this.repository, times(1)).saveAll(userList);
     }
 
     @Test

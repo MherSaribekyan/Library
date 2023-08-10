@@ -13,7 +13,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -45,7 +44,7 @@ public class AdminEndpointTest {
         mockMvc.perform(requestBuilder)
                 .andExpect(status().isNoContent());
 
-        verify(service, times(1)).createAdmin(eq(request));
+        verify(service, times(1)).createAdmin(request);
     }
 
     @Test

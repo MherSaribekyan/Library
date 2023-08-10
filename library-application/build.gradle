@@ -23,7 +23,7 @@ dependencies {
     implementation libs.springStarterWeb
     implementation libs.springStarterSecurity
     implementation libs.oauth2client
-    implementation libs.oauth2client1
+    implementation libs.oauth2clientAuth
     annotationProcessor libs.annotationProcessor
     implementation libs.springDataJpa
 

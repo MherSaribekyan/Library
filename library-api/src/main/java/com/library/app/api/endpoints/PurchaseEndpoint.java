@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/library/purchase")
 public class PurchaseEndpoint {
 
-    //todo
+    // endpoint has been created to be access only by ADMIN users
 }

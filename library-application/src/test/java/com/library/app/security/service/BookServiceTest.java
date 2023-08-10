@@ -16,7 +16,6 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -45,7 +44,7 @@ public class BookServiceTest {
         this.service.saveAll(bookList);
 
         //verification
-        verify(this.repository, times(1)).saveAll(eq(bookList));
+        verify(this.repository, times(1)).saveAll(bookList);
     }
 
     @Test
@@ -59,7 +58,7 @@ public class BookServiceTest {
 
         //verification
         verify(this.preferenceService, times(1))
-                .addUserPreferences(eq("fakePrincipalName"), eq(List.of(book.getGenre(), book.getAuthor())));
+                .addUserPreferences("fakePrincipalName", List.of(book.getGenre(), book.getAuthor()));
 
         verify(this.responseMapper, times(1)).toResponse(any());
     }
